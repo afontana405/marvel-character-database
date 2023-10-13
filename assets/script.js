@@ -4,7 +4,6 @@ document.getElementById('search-button').addEventListener('click', function () {
     updateSearchHistory(searchTerm);
 });
 
-
 function searchMarvelCharacter(query) {
     const publicKey = 'e6147ab9f31c4a7dd0d2c6bf68649dd9';
     const privateKey = 'd6401c906417dabe0cd8d8948f027ea7f6513378';
@@ -22,6 +21,24 @@ function searchMarvelCharacter(query) {
         .catch(error => console.error('Error fetching data:', error));
 }
 
+function displayResults(data) {
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = ""; // Clear previous results
+
+    data.data.results.forEach(character => {
+        const resultElement = document.createElement('p');
+        resultElement.textContent = character.name;
+        resultsContainer.appendChild(resultElement);
+    });
+}
+
+function updateSearchHistory(term) {
+    const historyContainer = document.getElementById('search-history');
+    const historyItem = document.createElement('p');
+    historyItem.textContent = term;
+    historyContainer.appendChild(historyItem);
+  preventDefault(historyContainer);
+}
   
 
   
