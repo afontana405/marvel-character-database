@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+header {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    font-size: 24px;
+}
+#main-container {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin-top: 20px;
+}
+#search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#search-history {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    height: 300px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+#result-container {
+    width: 60%;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
