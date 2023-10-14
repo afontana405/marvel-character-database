@@ -11,6 +11,7 @@ header {
     padding: 10px;
     font-size: 24px;
     width: 100%;
+    
 }
 #main-container {
     display: flex;
@@ -32,6 +33,11 @@ header {
     height: 500px;
     overflow-y: auto;
     margin-top: 20px;
+}
+
+#search-history h2 {
+    font-size: 25px;
+    font-weight: bold;
 }
 
 img {
