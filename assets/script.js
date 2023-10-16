@@ -107,15 +107,57 @@ function displayComics(characterId) {
         }
       }
 
-    // function updateSearchHistory(term) {
-    //     const historyContainer = document.getElementById('search-history');
-    //     if (!historyContainer.includes(term)) {
-    //         const historyItem = document.createElement('button');
-    //         historyItem.className = 'searchHistoryBtn';
-    //         historyItem.textContent = term;
-    //         historyContainer.appendChild(historyItem);
-    //     }
-    // }
+    // Function to update the search history and save it to local storage
+function updateSearchHistory(term) {
+    const historyContainer = document.getElementById('search-history');
+    const historyItems = historyContainer.getElementsByClassName('searchHistoryBtn');
+    
+    // Check if the term already exists in the search history
+    for (let i = 0; i < historyItems.length; i++) {
+        if (historyItems[i].textContent === term) {
+            return; 
+        }
+    }
+
+    const historyItem = document.createElement('button');
+    historyItem.className = 'searchHistoryBtn';
+    historyItem.textContent = term;
+    historyContainer.appendChild(historyItem);
+
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+    searchHistory.push(term);
+
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+}
+
+function populateSearchHistory() {
+    const historyContainer = document.getElementById('search-history');
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+    for (const term of searchHistory) {
+        const historyItem = document.createElement('button');
+        historyItem.className = 'searchHistoryBtn';
+        historyItem.textContent = term;
+        historyContainer.appendChild(historyItem);
+    }
+}
+
+window.addEventListener('load', populateSearchHistory);
+
+document.getElementById('search-button').addEventListener('click', function () {
+    const searchTerm = document.getElementById('search-bar').value;
+    searchMarvelCharacter(searchTerm);
+});
+
+document.addEventListener('click', function (event) {
+    if (event.target.className === 'searchHistoryBtn') {
+        var searchTerm = event.target.textContent;
+        searchMarvelCharacter(searchTerm);
+    }
+});
+
+
 
 
 
