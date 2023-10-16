@@ -46,12 +46,33 @@ function searchMarvelCharacter(query) {
 
     function updateSearchHistory(term) {
         const historyContainer = document.getElementById('search-history');
-        const historyItem = document.createElement('button');
-        historyItem.className = 'searchHistoryBtn';
-        historyItem.textContent = term;
-        historyContainer.appendChild(historyItem);
-    }
-      
+        const buttons = historyContainer.getElementsByTagName('button');
+        
+        let termExists = false;
+        for (let i = 0; i < buttons.length; i++) {
+          if (buttons[i].textContent === term) {
+            termExists = true;
+            break;
+          }
+        }
+        
+        if (!termExists) {
+          const historyItem = document.createElement('button');
+          historyItem.className = 'searchHistoryBtn';
+          historyItem.textContent = term;
+          historyContainer.appendChild(historyItem);
+        }
+      }
+
+    // function updateSearchHistory(term) {
+    //     const historyContainer = document.getElementById('search-history');
+    //     if (!historyContainer.includes(term)) {
+    //         const historyItem = document.createElement('button');
+    //         historyItem.className = 'searchHistoryBtn';
+    //         historyItem.textContent = term;
+    //         historyContainer.appendChild(historyItem);
+    //     }
+    // }
 }
 
 
