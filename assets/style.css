@@ -10,29 +10,36 @@ header {
     color: white;
     padding: 10px;
     font-size: 24px;
+    width: 100%;
+    
 }
 #main-container {
     display: flex;
     justify-content: space-around;
-    width: 80%;
+    width: 100%;
+    height: 600px;
     margin-top: 20px;
 }
 #search-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    height: 500px;
 }
 #search-history {
     border: 1px solid #ccc;
     padding: 10px;
     width: 200px;
-    height: 300px;
+    height: 500px;
     overflow-y: auto;
     margin-top: 20px;
 }
-#result-container {
-    width: 60%;
+
+#search-history h2 {
+    font-size: 25px;
+    font-weight: bold;
 }
+
 img {
     max-width: 100%;
     height: auto;
