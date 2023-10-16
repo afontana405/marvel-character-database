@@ -14,27 +14,67 @@ function searchMarvelCharacter(query) {
         if (!response.ok) {
             throw new Error('Network response was not ok' + response.statusText);
         }
-            return response.json();
-        })
-        .then(data => displayResults(data))
-        .catch(error => console.error('Error fetching data:', error));
+        return response.json();
+    })
+    .then(data => displayResults(data))
+    .catch(error => console.error('Error fetching data:', error));
+}
+
+function displayResults(data) {
+    if (data.data.total !== 0) {
+        const searchTerm = document.getElementById('search-bar').value;
+        updateSearchHistory(searchTerm);
     }
     
-    function displayResults(data) {
-        if (data.data.total !== 0) {
-            const searchTerm = document.getElementById('search-bar').value;
-            updateSearchHistory(searchTerm);
-        }
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = ""; // Clear previous results
+
+    data.data.results.forEach(character => {
+        const resultElement = document.createElement('a');
+        resultElement.textContent = character.name;
         
-        console.log(data);
-        const resultsContainer = document.getElementById('results');
-        resultsContainer.innerHTML = ""; // Clear previous results
-        
-        data.data.results.forEach(character => {
-            const resultElement = document.createElement('p');
-            resultElement.textContent = character.name;
-            resultsContainer.appendChild(resultElement);
+        // Bind a click event to each character name
+        resultElement.addEventListener('click', function() {
+            displayComics(character.id);
+        });
+
+        resultElement.style.cursor = 'pointer';
+        resultElement.style.display = 'block';
+        resultElement.style.marginBottom = '10px';
+
+        resultsContainer.appendChild(resultElement);
     });
+}
+
+function displayComics(characterId) {
+    const publicKey = 'e6147ab9f31c4a7dd0d2c6bf68649dd9';
+    const privateKey = 'd6401c906417dabe0cd8d8948f027ea7f6513378';
+    const ts = new Date().getTime();
+    const hash = md5(ts + privateKey + publicKey);
+
+    fetch(`https://gateway.marvel.com:443/v1/public/characters/${characterId}/comics?apikey=${publicKey}&hash=${hash}&ts=${ts}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        const resultsContainer = document.getElementById('results');
+        resultsContainer.innerHTML = ""; // Clear previous character results
+        
+        if (data.data.results.length === 0) {
+            resultsContainer.innerHTML = 'No comics found for this character.';
+            return;
+        }
+
+        data.data.results.forEach(comic => {
+            const comicElement = document.createElement('p');
+            comicElement.textContent = comic.title;
+            resultsContainer.appendChild(comicElement);
+        });
+    })
+    .catch(error => console.error('Error fetching comics:', error));
 }
 
 function updateSearchHistory(term) {
@@ -42,9 +82,6 @@ function updateSearchHistory(term) {
     const historyItem = document.createElement('p');
     historyItem.textContent = term;
     historyContainer.appendChild(historyItem);
-    // preventDefault(historyContainer);
 }
-  
 
-  
   
