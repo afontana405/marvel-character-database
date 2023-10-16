@@ -42,7 +42,50 @@ function searchMarvelCharacter(query) {
             const resultElement = document.createElement('p');
             resultElement.textContent = character.name;
             resultsContainer.appendChild(resultElement);
+
+            // Bind a click event to each character name
+        resultElement.addEventListener('click', function() {
+            displayComics(character.id);
+        });
+
+        resultElement.style.cursor = 'pointer';
+        resultElement.style.display = 'block';
+        resultElement.style.marginBottom = '10px';
+
+        resultsContainer.appendChild(resultElement);
     });
+}
+
+function displayComics(characterId) {
+    const publicKey = 'e6147ab9f31c4a7dd0d2c6bf68649dd9';
+    const privateKey = 'd6401c906417dabe0cd8d8948f027ea7f6513378';
+    const ts = new Date().getTime();
+    const hash = md5(ts + privateKey + publicKey);
+
+    fetch(`https://gateway.marvel.com:443/v1/public/characters/${characterId}/comics?apikey=${publicKey}&hash=${hash}&ts=${ts}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        const resultsContainer = document.getElementById('results');
+        resultsContainer.innerHTML = ""; // Clear previous character results
+        
+        if (data.data.results.length === 0) {
+            resultsContainer.innerHTML = 'No comics found for this character.';
+            return;
+        }
+
+        data.data.results.forEach(comic => {
+            const comicElement = document.createElement('p');
+            comicElement.textContent = comic.title;
+            resultsContainer.appendChild(comicElement);
+        });
+    })
+    .catch(error => console.error('Error fetching comics:', error));
+    };
 
     function updateSearchHistory(term) {
         const historyContainer = document.getElementById('search-history');
@@ -63,7 +106,59 @@ function searchMarvelCharacter(query) {
           historyContainer.appendChild(historyItem);
         }
       }
+
+    // Function to update the search history and save it to local storage
+function updateSearchHistory(term) {
+    const historyContainer = document.getElementById('search-history');
+    const historyItems = historyContainer.getElementsByClassName('searchHistoryBtn');
+    
+    // Check if the term already exists in the search history
+    for (let i = 0; i < historyItems.length; i++) {
+        if (historyItems[i].textContent === term) {
+            return; 
+        }
+    }
+
+    const historyItem = document.createElement('button');
+    historyItem.className = 'searchHistoryBtn';
+    historyItem.textContent = term;
+    historyContainer.appendChild(historyItem);
+
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+    searchHistory.push(term);
+
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 }
+
+function populateSearchHistory() {
+    const historyContainer = document.getElementById('search-history');
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+    for (const term of searchHistory) {
+        const historyItem = document.createElement('button');
+        historyItem.className = 'searchHistoryBtn';
+        historyItem.textContent = term;
+        historyContainer.appendChild(historyItem);
+    }
+}
+
+window.addEventListener('load', populateSearchHistory);
+
+document.getElementById('search-button').addEventListener('click', function () {
+    const searchTerm = document.getElementById('search-bar').value;
+    searchMarvelCharacter(searchTerm);
+});
+
+document.addEventListener('click', function (event) {
+    if (event.target.className === 'searchHistoryBtn') {
+        var searchTerm = event.target.textContent;
+        searchMarvelCharacter(searchTerm);
+    }
+});
+
+
+
 
 
   
