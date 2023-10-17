@@ -6,6 +6,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: darkgray;
 }
+
 header {
     background-color: red;
     color: white;
@@ -14,6 +15,7 @@ header {
     width: 100%;
     
 }
+
 #main-container {
     display: flex;
     justify-content: space-around;
@@ -21,6 +23,7 @@ header {
     height: 600px;
     margin-top: 20px;
 }
+
 #search-container {
     display: inline-flex;
     flex-direction: column;
@@ -30,6 +33,7 @@ header {
     border-style: solid;
     border-width: 5px;
 }
+
 #search-history {
     border: 1px solid #ccc;
     padding: 10px;
@@ -42,12 +46,8 @@ header {
 
 #search-history h2 {
     font-size: 25px;
+    text-decoration: underline;
     font-weight: bold;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
 }
 
 #result-container {
@@ -59,6 +59,11 @@ img {
     background-color: blue;
     border-style: solid;
     border-width: 5px;
+}
+
+#hero-variants h2, #comic-appearance h2 {
+    text-align: center;
+    text-decoration: underline;
 }
 
 #comic-appearance {
@@ -73,5 +78,5 @@ img {
 }
 
 #comic-appearance img:hover {
-    transform: scale(1.5); 
+    transform: scale(2.5); 
 }
