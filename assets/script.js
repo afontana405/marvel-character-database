@@ -9,6 +9,11 @@ document.getElementById('search-button').addEventListener('click', function () {
 
 document.addEventListener('click', function () {
     if (event.target.className === 'searchHistoryBtn') {
+        var comicAppearance = document.getElementById('comic-appearance');
+        comicAppearance.innerHTML = "";
+        var h2El = document.createElement('h2');
+        h2El.innerHTML = "Comic Appearances";
+        comicAppearance.append(h2El);
         var searchTerm = event.target.textContent;
         searchMarvelCharacter(searchTerm);
     }
