@@ -79,13 +79,25 @@ function displayComics(characterId) {
         }
 
         data.data.results.forEach(comic => {
-            const comicElement = document.createElement('p');
-            comicElement.textContent = comic.title;
+            const comicElement = document.createElement('div');
+
+            // Creates an image element
+            const comicImage = document.createElement('img');
+            comicImage.src = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
+            comicImage.alt = comic.title;
+            comicImage.style.width = '100px'; 
+            comicElement.appendChild(comicImage);
+
+            const comicTitle = document.createElement('p');
+            comicTitle.textContent = comic.title;
+            comicElement.appendChild(comicTitle);
+
             resultsContainer.appendChild(comicElement);
         });
     })
     .catch(error => console.error('Error fetching comics:', error));
-    };
+}
+
 
     function updateSearchHistory(term) {
         const historyContainer = document.getElementById('search-history');
