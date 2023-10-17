@@ -57,3 +57,11 @@ img {
     border-width: 5px;
     margin-left: 10px;
 }
+
+#results img {
+    transition: transform 0.3s;
+}
+
+#results img:hover {
+    transform: scale(1.5); 
+}
