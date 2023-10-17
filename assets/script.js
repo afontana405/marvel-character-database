@@ -71,7 +71,6 @@ function displayComics(characterId) {
     })
     .then(data => {
         const resultsContainer = document.getElementById('results');
-        resultsContainer.innerHTML = ""; // Clear previous character results
         
         if (data.data.results.length === 0) {
             resultsContainer.innerHTML = 'No comics found for this character.';
@@ -80,7 +79,8 @@ function displayComics(characterId) {
 
         data.data.results.forEach(comic => {
             const comicElement = document.createElement('div');
-
+            var comicAppearance = document.getElementById('comic-appearance');
+            comicAppearance.innerHTML = '<h2>Comic Appearances</h2>'
             // Creates an image element
             const comicImage = document.createElement('img');
             comicImage.src = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
@@ -92,11 +92,42 @@ function displayComics(characterId) {
             comicTitle.textContent = comic.title;
             comicElement.appendChild(comicTitle);
 
+            comicTitle.addEventListener('click', function() {
+                document.getElementById('modalTitle').textContent = comic.title;
+                document.getElementById('modalDescription').textContent = comic.description || 'No description available.';
+                showModal();
+            });
+
             resultsContainer.appendChild(comicElement);
         });
     })
     .catch(error => console.error('Error fetching comics:', error));
 }
+
+function showModal() {
+    const backdrop = document.getElementById('modalBackdrop');
+    const modal = document.getElementById('modalBox');
+
+    backdrop.style.display = 'block';
+    modal.style.display = 'block';
+}
+
+const closeModal = document.getElementById('modalClose');
+const backdrop = document.getElementById('modalBackdrop');
+
+closeModal.addEventListener('click', function() {
+    backdrop.style.display = 'none';
+    document.getElementById('modalBox').style.display = 'none';
+});
+
+// Close modal when clicking outside of it
+backdrop.addEventListener('click', function(event) {
+    if (event.target === backdrop) {
+        backdrop.style.display = 'none';
+        document.getElementById('modalBox').style.display = 'none';
+    }
+});
+
 
 
     function updateSearchHistory(term) {
