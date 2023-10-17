@@ -4,6 +4,7 @@ body {
     align-items: center;
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: darkgray;
 }
 header {
     background-color: red;
@@ -25,6 +26,9 @@ header {
     flex-direction: column;
     align-items: flex-start;
     height: 500px;
+    background-color: blue;
+    border-style: solid;
+    border-width: 5px;
 }
 #search-history {
     border: 1px solid #ccc;
@@ -33,6 +37,7 @@ header {
     height: 500px;
     overflow-y: auto;
     margin-top: 20px;
+    background-color: lightblue;
 }
 
 #search-history h2 {
@@ -43,4 +48,12 @@ header {
 img {
     max-width: 100%;
     height: auto;
+}
+
+#result-container {
+    font-weight: bold;
+    background-color: blue;
+    border-style: solid;
+    border-width: 5px;
+    margin-left: 10px;
 }
