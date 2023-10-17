@@ -82,13 +82,15 @@ function displayComics(characterId) {
         const resultsContainer = document.getElementById('results');
         
         if (data.data.results.length === 0) {
-            resultsContainer.innerHTML = 'No comics found for this character.';
+            var comicAppearance = document.getElementById('comic-appearance');
+            comicAppearance.innerHTML = '<h2>Comic Appearances</h2>' + 'No comics found for this character.';
             return;
         }
 
         data.data.results.forEach(comic => {
             const comicElement = document.createElement('div');
             var comicAppearance = document.getElementById('comic-appearance');
+            comicAppearance.innerHTML = '<h2>Comic Appearances</h2>'
             // Creates an image element
             const comicImage = document.createElement('img');
             comicImage.src = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;

@@ -53,14 +53,19 @@ img {
 #result-container {
     display: inline-flex;
     font-weight: bold;
+}
+
+#hero-variants {
+    background-color: blue;
+    border-style: solid;
+    border-width: 5px;
+}
+
+#comic-appearance {
     background-color: blue;
     border-style: solid;
     border-width: 5px;
     margin-left: 10px;
-}
-
-#comic-appearance {
-    display: inline-flex;
 }
 
 #comic-appearance img {
