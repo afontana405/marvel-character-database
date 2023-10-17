@@ -1,5 +1,9 @@
 document.getElementById('search-button').addEventListener('click', function () {
     const searchTerm = document.getElementById('search-bar').value;
+    const resultsContainer = document.getElementById('results');
+    var comicAppearance = document.getElementById('comic-appearance');
+    comicAppearance.innerHTML = "";
+    resultsContainer.innerHTML = ""; // Clear previous character results
     searchMarvelCharacter(searchTerm);
 });
 
@@ -71,7 +75,6 @@ function displayComics(characterId) {
     })
     .then(data => {
         const resultsContainer = document.getElementById('results');
-        resultsContainer.innerHTML = ""; // Clear previous character results
         
         if (data.data.results.length === 0) {
             resultsContainer.innerHTML = 'No comics found for this character.';
@@ -80,7 +83,7 @@ function displayComics(characterId) {
 
         data.data.results.forEach(comic => {
             const comicElement = document.createElement('div');
-
+            var comicAppearance = document.getElementById('comic-appearance');
             // Creates an image element
             const comicImage = document.createElement('img');
             comicImage.src = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
@@ -92,7 +95,7 @@ function displayComics(characterId) {
             comicTitle.textContent = comic.title;
             comicElement.appendChild(comicTitle);
 
-            resultsContainer.appendChild(comicElement);
+            comicAppearance.appendChild(comicElement);
         });
     })
     .catch(error => console.error('Error fetching comics:', error));
