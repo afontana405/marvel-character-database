@@ -114,6 +114,19 @@ header {
     cursor: pointer;
 }
 
+#modalBox {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 1001;
+    width: 300px; /* or whatever width you want */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 #wiki-search-container {
     background-color: blue;
     text-align: center;
