@@ -3,6 +3,11 @@ document.getElementById('search-button').addEventListener('click', function () {
     searchMarvelCharacter(searchTerm);
 });
 
+document.getElementById('wiki-search-btn').addEventListener('click', function () {
+    var searchterm = document.getElementById('wiki-search-bar').value;
+    searchWikiApi(searchterm)
+});
+
 document.addEventListener('click', function () {
     if (event.target.className === 'searchHistoryBtn') {
         var searchTerm = event.target.textContent;
@@ -218,17 +223,25 @@ function clearSearchHistory() {
     const resultsContainer = document.getElementById('results');
     resultsContainer.innerHTML = '';
     const comicAppearance = document.getElementById('comic-appearance');
-    comicAppearance.innerHTML = '';
+    comicAppearance.innerHTML = '<h2>Comic Appearances</h2>';
 }
 document.getElementById('clear-search').addEventListener('click', function () {
-    clearSearchHistory();
-     
-   
+    clearSearchHistory()   
 });
 
-
-
-
+function searchWikiApi(searchTerm) {
+    console.log(searchTerm);
+    fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${searchTerm}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+    });
+}
 
   
   
