@@ -3,6 +3,11 @@ document.getElementById('search-button').addEventListener('click', function () {
     searchMarvelCharacter(searchTerm);
 });
 
+document.getElementById('wiki-search-btn').addEventListener('click', function () {
+    var searchterm = document.getElementById('wiki-search-bar').value;
+    searchWikiApi(searchterm)
+});
+
 document.addEventListener('click', function () {
     if (event.target.className === 'searchHistoryBtn') {
         var searchTerm = event.target.textContent;
@@ -150,16 +155,16 @@ function showModal() {
       }
 
     // Function to update the search history and save it to local storage
-function updateSearchHistory(term) {
-    const historyContainer = document.getElementById('search-history');
-    const historyItems = historyContainer.getElementsByClassName('searchHistoryBtn');
-    
-    // Check if the term already exists in the search history
-    for (let i = 0; i < historyItems.length; i++) {
-        if (historyItems[i].textContent === term) {
-            return; 
+    function updateSearchHistory(term) {
+        const historyContainer = document.getElementById('search-history');
+        const historyItems = historyContainer.getElementsByClassName('searchHistoryBtn');
+
+        // Check if the term already exists in the search history
+        for (let i = 0; i < historyItems.length; i++) {
+            if (historyItems[i].textContent === term) {
+                return; 
+            }
         }
-    }
 
     const historyItem = document.createElement('button');
     historyItem.className = 'searchHistoryBtn';
@@ -199,7 +204,9 @@ document.addEventListener('click', function (event) {
     }
 });
 
-
+function searchWikiApi(searchterm) {
+    console.log(searchterm);
+};
 
 
 
