@@ -204,9 +204,19 @@ document.addEventListener('click', function (event) {
     }
 });
 
-function searchWikiApi(searchterm) {
-    console.log(searchterm);
-};
+function clearSearchHistory() {
+    localStorage.removeItem('searchHistory');
+    // Clear search and comic results from the UI
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = '';
+    const comicAppearance = document.getElementById('comic-appearance');
+    comicAppearance.innerHTML = '';
+}
+document.getElementById('clear-search').addEventListener('click', function () {
+    clearSearchHistory()   
+});
+
+
 
 
 
