@@ -90,7 +90,7 @@ header {
     transform: scale(2.5); 
 }
 
-.modal-backdrop {
+#modal-backdrop {
     display: none;
     position: fixed;
     top: 0;
@@ -111,6 +111,7 @@ header {
     padding: 20px;
     width: 300px; 
     z-index: 1001;
+    background-color: darkgray;
 }
 
 .modal-header {
