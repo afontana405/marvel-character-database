@@ -20,7 +20,6 @@ header {
     display: flex;
     justify-content: space-around;
     width: 100%;
-    height: 600px;
     margin-top: 20px;
 }
 
@@ -28,7 +27,6 @@ header {
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 500px;
     background-color: blue;
     border-style: solid;
     border-width: 5px;
@@ -37,11 +35,14 @@ header {
 #search-history {
     border: 1px solid #ccc;
     padding: 10px;
-    width: 200px;
+    width: 250px;
     height: 500px;
     overflow-y: auto;
     margin-top: 20px;
     background-color: lightblue;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
 }
 
 #search-history h2 {
@@ -59,6 +60,12 @@ header {
     background-color: blue;
     border-style: solid;
     border-width: 5px;
+    border-radius: 50px;
+    filter: drop-shadow(purple 16px 16px 5px);
+}
+
+#hero-variants p {
+    padding-left: 10px;
 }
 
 #hero-variants h2, #comic-appearance h2 {
@@ -70,7 +77,9 @@ header {
     background-color: blue;
     border-style: solid;
     border-width: 5px;
-    margin-left: 10px;
+    margin-left: 50px;
+    border-radius: 50px;
+    filter: drop-shadow(purple 16px 16px 5px);
 }
 
 #comic-appearance img {
@@ -78,7 +87,7 @@ header {
 }
 
 #comic-appearance img:hover {
-    transform: scale(1.5); 
+    transform: scale(2.5); 
 }
 
 .modal-backdrop {
@@ -135,7 +144,7 @@ header {
     border-width: 5px;
     position: relative;
     top: 50px;
-    height: 600px;
+    height: 700px;
 }
 
 #wiki-results-container {
@@ -144,12 +153,15 @@ header {
 
 #wiki-results {
     background-color: blue;
-    width: 360px;
     border-style: solid;
     border-width: 5px;
     position: relative;
     left: 0px;
     top: 50px;
+    border-radius: 50px;
+    height: 500px;
+    filter: drop-shadow(purple 16px 16px 5px);
+    height: 700px;
 }
 
 #wiki-results h2 {
