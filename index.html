@@ -35,17 +35,29 @@
                 <h2>Comic Appearances</h2>
             </div>
         </section>
-        <div class="modal-backdrop" id="modalBackdrop">
-            <div class="modal" id="modalBox">
-                <div class="modal-header">
-                    <h3 id="modalTitle"></h3>
-                    <span class="modal-close" id="modalClose">&times;</span>
-                </div>
-                <p id="modalDescription"></p>
-                <h3>Creators</h3>
+        <div class="modal" id="modalBackdrop">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="modalBox">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalClose">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalDescription">
+                <p></p>
+            </div>
+            <div class="modal-footer">
                 <ul id="modalCreators"></ul>
             </div>
         </div>
+    </div>
+</div>
+
+    
+    
+        
+        
         <section id="wiki-search-container" class="p-2 col-2 align-items-center">
             <input type="text" id="wiki-search-bar" class="col-8" placeholder="Search..."> 
             <button id="wiki-search-btn" class="col-4">Search</button>
