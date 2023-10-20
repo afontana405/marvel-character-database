@@ -1,10 +1,8 @@
-:root {
-    --red: #782323;
-    --blue: #15384A;
-    --gray: #2B2B2B;
+* h2 , h3 , p {
+    color: #ddd;
 }
-
 body {
+    background-image: url('marvel-comic-background.jpg');
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,12 +16,16 @@ body h2, body p {
 }
 
 header {
-    background-color: var(--red);
+    background-color: red;
     color: white;
-    padding: 10px;
     font-size: 24px;
     width: 100%;
-    filter: drop-shadow(var(--gray) 16px 16px 5px);
+    
+}
+
+.header-image {
+    width: 100%;
+    height: 200px;
 }
 
 #main-container {
