@@ -1,3 +1,8 @@
+var superHeroes = ['iron man', 'spider-man', 'she-hulk', 'black widow', 'captain marvel', 'captain america'];
+$('#search-bar').autocomplete({
+    source: superHeroes
+});
+
 document.getElementById('search-button').addEventListener('click', function () {
     var searchTerm = document.getElementById('search-bar').value;
     searchMarvelCharacter(searchTerm);
@@ -240,5 +245,5 @@ function searchWikiApi(searchTerm) {
     });
 }
 
-  
+
   

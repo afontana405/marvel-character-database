@@ -16,10 +16,10 @@
         <!-- Left side: Search Bar and History -->
         <section id="search-container" class="p-2 col-2 align-items-center">
             <div class="row justify-content-center">
-                <input type="text" id="search-bar" class="col-7" placeholder="Search...">
+                <input type="text" id="search-bar" class="col-7" autocomplete="off" placeholder="Search...">
                 <button id="search-button" class="col-3">Search</button>
             </div>
-            <button id="clear-search">clear</button>
+            <button class="justify-content-right" id="clear-search">clear</button>
 
             <div id="search-history">
                 <h2>Search History</h2>
@@ -65,6 +65,8 @@
             </div>
         </section> 
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="assets/script.js"></script>
 </body>
 </html>
