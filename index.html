@@ -16,8 +16,10 @@
     <main id="main-container" class="row">
         <!-- Left side: Search Bar and History -->
         <section id="search-container" class="p-2 col-2 align-items-center">
-            <input type="text" id="search-bar" class="col-8" placeholder="Search...">
-            <button id="search-button" class="col-4">Search</button>
+            <div class="row justify-content-center">
+                <input type="text" id="search-bar" class="col-7" placeholder="Search...">
+                <button id="search-button" class="col-3">Search</button>
+            </div>
             <button id="clear-search">clear</button>
 
             <div id="search-history">
@@ -26,38 +28,44 @@
             </div>
         </section>
         <!-- Right side: Search Results and Image -->
-        <section id="result-container" class="col-10">
-            <div id="hero-variants" class="col-3">
+        <section id="result-container" class="col-10 px-5">
+            <div id="hero-variants" class="col-4">
                 <h2>Search Results</h2>
                 <!-- Search results will be displayed here -->
                 <div id="results"></div>
             </div>
-            <div id="comic-appearance" class="col-3">
+            <div id="comic-appearance" class="col-4 px-5">
                 <h2>Comic Appearances</h2>
             </div>
         </section>
-        <div class="modal-backdrop" id="modalBackdrop">
-            <div class="modal" id="modalBox">
-                <div class="modal-header">
-                    <h3 id="modalTitle"></h3>
-                    <span class="modal-close" id="modalClose">&times;</span>
+        <div class="modal" id="modalBackdrop">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" id="modalBox">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalClose">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="modalDescription">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                        <ul id="modalCreators"></ul>
+                    </div>
                 </div>
-                <p id="modalDescription"></p>
-                <h3>Creators</h3>
-                <ul id="modalCreators"></ul>
             </div>
         </div>
         <section id="wiki-search-container" class="p-2 col-2 align-items-center">
             <input type="text" id="wiki-search-bar" class="col-8" placeholder="Search..."> 
             <button id="wiki-search-btn" class="col-4">Search</button>
         </section>
-        <section id="wiki-results-container" class="col-10">
-            <div id="wiki-results">
+        <section id="wiki-results-container" class="col-10 px-5">
+            <div id="wiki-results" class="col-4">
                 <h2>Wiki Results</h2>
             </div>
-        </section>
+        </section> 
     </main>
     <script src="assets/script.js"></script>
-   
 </body>
 </html>
