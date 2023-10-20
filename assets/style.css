@@ -1,3 +1,6 @@
+* h2 , h3 , p {
+    color: #ddd;
+}
 body {
     background-image: url('marvel-comic-background.jpg');
     display: flex;
