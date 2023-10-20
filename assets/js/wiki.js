@@ -39,7 +39,7 @@ function WikiResults(data) {
             wikiContainer.appendChild(resultElement);
         }
     } else {
-        // Display a message when no results are found
+        
         wikiContainer.innerHTML = "No results found.";
     }
 }
