@@ -1,8 +1,10 @@
+//event listener for the search button to perform a Marvel character search
 document.getElementById('search-button').addEventListener('click', function () {
     var searchTerm = document.getElementById('search-bar').value;
     searchMarvelCharacter(searchTerm);
 });
 
+//event listener for the Wikipedia search button to perform a Wikipedia search
 document.getElementById('wiki-search-btn').addEventListener('click', function () {
     var searchterm = document.getElementById('wiki-search-bar').value;
     searchWikiApi(searchterm)
@@ -16,13 +18,14 @@ document.addEventListener('click', function () {
     // console.log(event.target.textContent);
 });
 
+// Gets characters from the Marvel API
 function searchMarvelCharacter(query) {
     var publicKey = 'e6147ab9f31c4a7dd0d2c6bf68649dd9';
     var privateKey = 'd6401c906417dabe0cd8d8948f027ea7f6513378';
     var ts = new Date().getTime();
     var hash = md5(ts + privateKey + publicKey);
 
-    fetch(`https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&apikey=${publicKey}&hash=${hash}&ts=${ts}`)
+    fetch(`https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&apikey=${publicKey}&hash=${hash}&ts=${ts}`) // fetchs the characters from Marvel API
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok' + response.statusText);
@@ -32,10 +35,11 @@ function searchMarvelCharacter(query) {
         .then(data => displayResults(data))
         // .catch(error => console.error('Error fetching data:', error));
     }
-    
+    // Function to display the results from the Marvel API search
     function displayResults(data) {
         if (data.data.total !== 0) {
             var searchTerm = document.getElementById('search-bar').value;
+            //Adds prevoius searchs to the search history
             updateSearchHistory(searchTerm);
         }
         
@@ -48,7 +52,7 @@ function searchMarvelCharacter(query) {
             resultElement.textContent = character.name;
             resultsContainer.appendChild(resultElement);
 
-            // Bind a click event to each character name
+            // Binds a click event to each character name
         resultElement.addEventListener('click', function() {
             displayComics(character.id);
         });
@@ -61,13 +65,14 @@ function searchMarvelCharacter(query) {
     });
 }
 
+// Function to display comics associated with a specific Marvel character ID
 function displayComics(characterId) {
     var publicKey = 'e6147ab9f31c4a7dd0d2c6bf68649dd9';
     var privateKey = 'd6401c906417dabe0cd8d8948f027ea7f6513378';
     var ts = new Date().getTime();
     var hash = md5(ts + privateKey + publicKey);
 
-    fetch(`https://gateway.marvel.com:443/v1/public/characters/${characterId}/comics?apikey=${publicKey}&hash=${hash}&ts=${ts}`)
+    fetch(`https://gateway.marvel.com:443/v1/public/characters/${characterId}/comics?apikey=${publicKey}&hash=${hash}&ts=${ts}`) //fetches the comics from MARVEL API
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok' + response.statusText);
@@ -84,21 +89,23 @@ function displayComics(characterId) {
         
         comicAppearance.innerHTML = '<h2>Comic Appearances</h2>'
         
+        // Displays each comic with its thumbnail and title
         data.data.results.forEach(comic => {
             var comicElement = document.createElement('div');
             var comicAppearance = document.getElementById('comic-appearance');
             
-            // Creates an image element
             var comicImage = document.createElement('img');
             comicImage.src = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
             comicImage.alt = comic.title;
             comicImage.style.width = '100px'; 
             comicElement.appendChild(comicImage);
-
+            
+            // Display the comic's title
             var comicTitle = document.createElement('p');
             comicTitle.textContent = comic.title;
             comicElement.appendChild(comicTitle);
-
+            
+            //Binds a click event to each comic title to display more details about the comic
             comicTitle.addEventListener('click', function() {
                 document.getElementById('modalTitle').textContent = comic.title;
                 document.getElementById('modalDescription').textContent = comic.description || 'No description available.';
@@ -115,7 +122,7 @@ function displayComics(characterId) {
                     noCreators.textContent = 'No creators listed for this comic';
                     creatorList.appendChild(noCreators);
                 }
-                showModal();
+                showModal(); // Displays the modal with comic details
             });
 
             comicAppearance.appendChild(comicElement);
@@ -124,6 +131,7 @@ function displayComics(characterId) {
     .catch(error => console.error('Error fetching comics:', error));
 }
 
+// Function to display the modal with comic details
 function showModal() {
     var backdrop = document.getElementById('modalBackdrop');
     var modal = document.getElementById('modalBox');
@@ -146,7 +154,7 @@ function showModal() {
     });
 }
 
-
+//function that updates search history container
     function updateSearchHistory(term) {
         var historyContainer = document.getElementById('search-history');
         var buttons = historyContainer.getElementsByTagName('button');
@@ -191,6 +199,7 @@ function updateSearchHistory(term) {
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 }
 
+//Makes previous search history a button
 function populateSearchHistory() {
     var historyContainer = document.getElementById('search-history');
     var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
@@ -203,7 +212,7 @@ function populateSearchHistory() {
     }
 }
 
-window.addEventListener('load', populateSearchHistory);
+window.addEventListener('load', populateSearchHistory); //retrieves search history from local storage when page is loaded
 
 document.getElementById('search-button').addEventListener('click', function () {
     var searchTerm = document.getElementById('search-bar').value;
@@ -229,9 +238,10 @@ document.getElementById('clear-search').addEventListener('click', function () {
     clearSearchHistory()   
 });
 
+//// Function to search characters on wikipedia
 function searchWikiApi(searchTerm) {
     console.log(searchTerm);
-    fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${searchTerm}`)
+    fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${searchTerm}`) //fetchs data from wikipedia API
     .then(response => {
         return response.json();
     })
