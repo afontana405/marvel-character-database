@@ -1,6 +1,7 @@
 * h2 , h3 , p {
     color: #ddd;
 }
+
 body {
     background-image: url('marvel-comic-background.jpg');
     display: flex;
@@ -68,7 +69,7 @@ header {
     border-style: solid;
     border-width: 5px;
     border-radius: 50px;
-    filter: drop-shadow(purple 16px 16px 5px);
+    filter: drop-shadow(#2B2B2B 16px 16px 5px);
 }
 
 #hero-variants p {
@@ -86,7 +87,13 @@ header {
     border-width: 5px;
     margin-left: 50px;
     border-radius: 50px;
-    filter: drop-shadow(purple 16px 16px 5px);
+    filter: drop-shadow(#2B2B2B 16px 16px 5px);
+}
+
+#comic-appearance div {
+    display: inline-flex;
+    width: 30%;
+    padding: 10px;
 }
 
 #comic-appearance img {
@@ -168,7 +175,7 @@ header {
     top: 50px;
     border-radius: 50px;
     height: 500px;
-    filter: drop-shadow(purple 16px 16px 5px);
+    filter: drop-shadow(#2B2B2B 16px 16px 5px);
     height: 700px;
 }
 
