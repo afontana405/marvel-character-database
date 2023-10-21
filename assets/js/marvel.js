@@ -4,12 +4,6 @@ document.getElementById('search-button').addEventListener('click', function () {
     searchMarvelCharacter(searchTerm);
 });
 
-//event listener for the Wikipedia search button to perform a Wikipedia search
-document.getElementById('wiki-search-btn').addEventListener('click', function () {
-    var searchterm = document.getElementById('wiki-search-bar').value;
-    searchWikiApi(searchterm)
-});
-
 document.addEventListener('click', function () {
     if (event.target.className === 'searchHistoryBtn') {
         var searchTerm = event.target.textContent;
@@ -173,7 +167,7 @@ function showModal() {
           historyItem.textContent = term;
           historyContainer.appendChild(historyItem);
         }
-      }
+    }
 
     // Function to update the search history and save it to local storage
 function updateSearchHistory(term) {
@@ -237,17 +231,5 @@ function clearSearchHistory() {
 document.getElementById('clear-search').addEventListener('click', function () {
     clearSearchHistory()   
 });
-
-function searchWikiApi(searchTerm) {
-    console.log(searchTerm);
-    fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${searchTerm}`)
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-    });
-}
-
   
   

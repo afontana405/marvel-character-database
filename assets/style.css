@@ -38,13 +38,14 @@ header {
     background-color: blue;
     border-style: solid;
     border-width: 5px;
+    height: 600px;
 }
 
 #search-history {
     border: 1px solid #ccc;
     padding: 10px;
-    width: 250px;
-    height: 500px;
+    height: 75%;
+    width: 90%;
     overflow-y: auto;
     margin-top: 20px;
     background-color: lightblue;
@@ -76,7 +77,7 @@ header {
     padding-left: 10px;
 }
 
-#hero-variants h2, #comic-appearance h2 {
+#hero-variants h2, #comic-appearance h2, #wiki-results h2 {
     text-align: center;
     text-decoration: underline;
 }
@@ -162,6 +163,14 @@ header {
     height: 700px;
 }
 
+#wiki-search-history {
+    background-color: lightblue;
+    height: 75%;
+    width: 90%;
+    border-style: solid;
+    border-width: 5px;
+}
+
 #wiki-results-container {
     position: relative;
 }
@@ -177,9 +186,4 @@ header {
     height: 500px;
     filter: drop-shadow(#2B2B2B 16px 16px 5px);
     height: 700px;
-}
-
-#wiki-results h2 {
-    text-align: center;
-    text-decoration: underline;
 }
