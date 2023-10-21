@@ -37,7 +37,6 @@ function searchMarvelCharacter(query) {
             updateSearchHistory(searchTerm);
         }
         
-        console.log(data);
         var resultsContainer = document.getElementById('results');
         resultsContainer.innerHTML = ""; // Clear previous results
         
@@ -83,7 +82,7 @@ function displayComics(characterId) {
         
         comicAppearance.innerHTML = '<h2>Comic Appearances</h2>'
         
-        // Displays each comic with its thumbnail and title
+        // Displays each comic with its thumbnail
         data.data.results.forEach(comic => {
             var comicElement = document.createElement('div');
             var comicAppearance = document.getElementById('comic-appearance');
@@ -94,13 +93,8 @@ function displayComics(characterId) {
             comicImage.style.width = '100px'; 
             comicElement.appendChild(comicImage);
             
-            // Display the comic's title
-            var comicTitle = document.createElement('p');
-            comicTitle.textContent = comic.title;
-            comicElement.appendChild(comicTitle);
-            
-            //Binds a click event to each comic title to display more details about the comic
-            comicTitle.addEventListener('click', function() {
+            //Binds a click event to each comic img to display more details about the comic
+            comicImage.addEventListener('click', function() {
                 document.getElementById('modalTitle').textContent = comic.title;
                 document.getElementById('modalDescription').textContent = comic.description || 'No description available.';
                 var creatorList =document.getElementById('modalCreators');
