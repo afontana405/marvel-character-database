@@ -71,6 +71,7 @@ header {
     border-width: 5px;
     border-radius: 50px;
     filter: drop-shadow(#2B2B2B 16px 16px 5px);
+    text-align: center;
 }
 
 #hero-variants p {
@@ -163,6 +164,10 @@ header {
     height: 700px;
 }
 
+/* #wiki-search-container #wiki-clear-search {
+    display: flex-end;
+} */
+
 #wiki-search-history {
     background-color: lightblue;
     height: 75%;
@@ -186,4 +191,10 @@ header {
     height: 500px;
     filter: drop-shadow(#2B2B2B 16px 16px 5px);
     height: 700px;
+    text-align: center;
+}
+
+#wiki-results a {
+    color: white;
+    font-size: 20px;
 }
