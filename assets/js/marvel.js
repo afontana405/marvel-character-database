@@ -76,7 +76,7 @@ function displayComics(characterId) {
         var comicAppearance = document.getElementById('comic-appearance');
         
         if (data.data.results.length === 0) {
-            comicAppearance.innerHTML = '<h2>Comic Appearances</h2>' + 'No comics found for this character.';
+            comicAppearance.innerHTML = '<h2>Comic Appearances</h2>' + '<p>No comics found for this character.</p>';
             return;
         }
         
