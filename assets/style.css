@@ -54,7 +54,7 @@ header {
     border-color: black;
 }
 
-#search-history h2 {
+#search-history h2 , #wiki-search-history h2 {
     font-size: 25px;
     text-decoration: underline;
     font-weight: bold;
